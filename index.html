@@ -8,7 +8,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(#ffe6ee, #ffd6e8);
+        background: linear-gradient(#ffe6ee, #ffb3d9);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -22,21 +22,28 @@
         width: 330px;
         padding: 30px;
         border-radius: 25px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         text-align: center;
         position: relative;
-        z-index: 2;
+        z-index: 10;
     }
 
     h2 {
         font-size: 22px;
-        color: #333;
+        color: #ff2f87;
         margin-bottom: 25px;
         line-height: 1.4;
     }
 
+    p {
+        color: #ff1570;
+        font-size: 17px;
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+
     .yes-btn {
-        background: #ff3e78;
+        background: #ff2f87;
         border: none;
         padding: 15px 40px;
         color: white;
@@ -44,16 +51,15 @@
         border-radius: 15px;
         cursor: pointer;
         box-shadow: 0 4px 14px rgba(255,0,90,0.3);
-        margin-bottom: 20px;
     }
 
-    .no-btn {
-        background: #e6e6e6;
+    #noBtn {
+        background: #ff8fb8;
         border: none;
         padding: 10px 25px;
         border-radius: 12px;
         font-size: 16px;
-        color: #333;
+        color: white;
         cursor: pointer;
         position: absolute;
         transition: 0.15s;
@@ -61,13 +67,19 @@
         transform: translateX(-50%);
     }
 
-    .note {
-        margin-top: 75px;
-        font-size: 14px;
-        color: #ff6a88;
+    .message {
+        display: none;
+        font-size: 24px;
+        color: #ff2f87;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1.4;
+        z-index: 20;
+        position: absolute;
+        top: 40%;
+        width: 90%;
     }
 
-    /* HEART ANIMATION */
     .heart {
         position: absolute;
         font-size: 30px;
@@ -79,16 +91,6 @@
         0% { transform: translateY(0) scale(1); opacity: 1; }
         100% { transform: translateY(-500px) scale(1.8); opacity: 0; }
     }
-
-    /* Hidden message after Yes */
-    .message {
-        display: none;
-        font-size: 26px;
-        color: #ff3e78;
-        font-weight: bold;
-        text-align: center;
-        line-height: 1.4;
-    }
 </style>
 </head>
 
@@ -96,34 +98,30 @@
 
 <div class="card" id="mainCard">
     <div style="font-size: 40px;">🐱‍💗</div>
-</p>♡ ˚₊‧꒰ა ♥ ໒꒱ ‧₊˚ ♡
 
-    <h2><p>Can I have you for another 6 months… and maybe more? ❤️</p>
-</h2>
+    <h2>Asif, my baby,<br>Will you be my valentine?</h2>
 
-    <button class="yes-btn" id="yesBtn">Yes ✨💖</button>
+    <p>Can I have you for another 6 months… and maybe more? ❤️</p>
 
-   <button id="noBtn">No 🔪</button>
+    <button class="yes-btn" id="yesBtn">Yes 💖</button>
 
-
-    <div class="note">Try clicking "No" 😉</div>
+    <button id="noBtn">No 🔪</button>
 </div>
 
 <div class="message" id="yesMessage">
-    💖 YAY! I knew you'd say yes, my love! 💖
+    More chicks and roll dates then.<br>
+    Yesss! I LOVE YOU MORE. 💗
 </div>
 
 <script>
- const noBtn = document.getElementById("noBtn");
-
+    const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const mainCard = document.getElementById("mainCard");
     const yesMessage = document.getElementById("yesMessage");
 
-    /* RUNAWAY NO BUTTON */
+    // RUNAWAY NO BUTTON
     noBtn.addEventListener("mouseover", () => {
-        const card = document.querySelector(".card");
-        const cardRect = card.getBoundingClientRect();
+        const cardRect = mainCard.getBoundingClientRect();
         const btnRect = noBtn.getBoundingClientRect();
 
         let newX = Math.random() * (cardRect.width - btnRect.width);
@@ -133,12 +131,12 @@
         noBtn.style.top = newY + "px";
     });
 
-    /* HEART ANIMATION ON YES CLICK */
+    // YES BUTTON ACTION
     yesBtn.addEventListener("click", () => {
         mainCard.style.display = "none";
         yesMessage.style.display = "block";
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 30; i++) {
             let heart = document.createElement("div");
             heart.classList.add("heart");
             heart.innerHTML = "💖";
